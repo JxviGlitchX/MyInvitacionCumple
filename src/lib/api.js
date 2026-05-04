@@ -48,10 +48,8 @@ export async function getPhotos() {
 
 export async function deletePhoto(key, pin) {
   try {
-    const res = await fetch(`${API}/api/photo/${key}`, {
+    const res = await fetch(`${API}/api/photo/${key}?pin=${encodeURIComponent(pin)}`, {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ pin }),
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
@@ -59,7 +57,7 @@ export async function deletePhoto(key, pin) {
     }
     return await res.json();
   } catch (err) {
-    if (err.message.includes("PIN")) throw err;
+    if (err.message.includes("PIN") || err.message.includes("incorrecto")) throw err;
     console.warn("Worker no disponible");
     return { ok: false, error: true };
   }
