@@ -5,7 +5,7 @@ const CORS = {
 };
 
 /* ↓↓↓ CAMBIA ESTE PIN — solo tú lo sabes ↓↓↓ */
-const ADMIN_PIN = "javier22";
+const ADMIN_PIN = "AdminJavi2004#";
 /* ↑↑↑ CAMBIA ESTE PIN — solo tú lo sabes ↑↑↑ */
 
 function json(data, status = 200) {
