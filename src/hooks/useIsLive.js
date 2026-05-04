@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import eventData from "../constants/eventData";
 
 function useIsLive() {
-    const [status, setStatus] = useState("before"); // "before" | "during" | "after"
+    const [status, setStatus] = useState("before");
 
     useEffect(() => {
         function verificar() {
             const ahora = new Date();
             const fiesta = new Date(eventData.date);
-            /* 16 horas de duración */
             const finFiesta = new Date(fiesta.getTime() + 16 * 60 * 60 * 1000);
 
             if (ahora < fiesta) {
@@ -21,7 +20,8 @@ function useIsLive() {
         }
 
         verificar();
-        const intervalo = setInterval(verificar, 15000);
+        /* Verificar cada segundo para que reaccione rápido */
+        const intervalo = setInterval(verificar, 1000);
         return () => clearInterval(intervalo);
     }, []);
 

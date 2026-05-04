@@ -6,6 +6,7 @@ import EntryScreen from "./components/ui/EntryScreen";
 import Hero from "./components/sections/Hero";
 import Countdown from "./components/sections/Countdown";
 import Location from "./components/sections/Location";
+import Ruleta from "./components/sections/Ruleta";
 import Gallery from "./components/sections/Gallery";
 import RSVP from "./components/sections/RSVP";
 import useIsLive from "./hooks/useIsLive";
@@ -15,7 +16,6 @@ function App() {
   const [audio, setAudio] = useState(null);
   const status = useIsLive();
 
-  /* Cuando termina la fiesta, recargar para mostrar todo limpio */
   useEffect(() => {
     if (status === "after") {
       window.location.reload();
@@ -39,7 +39,7 @@ function App() {
 
       {adentro && (
         <>
-          {/* ═══ ANTES DE LA FIESTA ═══ */}
+          {/* ANTES DE LA FIESTA */}
           {status === "before" && (
             <>
               <Hero />
@@ -64,7 +64,7 @@ function App() {
             </>
           )}
 
-          {/* ═══ DURANTE LA FIESTA (16 horas) ═══ */}
+          {/* DURANTE LA FIESTA */}
           {status === "during" && (
             <>
               <section className="party-only-section" aria-label="La fiesta">
@@ -72,17 +72,19 @@ function App() {
                   <span className="party-only-dot" />
                   EN VIVO
                 </div>
-
                 <h1 className="party-only-title">
                   La fiesta
                   <br />
                   está en curso
                 </h1>
-
-                <p className="party-only-sub">
-                  Javier — 22 años
-                </p>
+                <p className="party-only-sub">Javier — 22 años</p>
               </section>
+
+              <div className="divider" aria-hidden="true">
+                <div className="divider-diamond" />
+              </div>
+
+              <Ruleta />
 
               <div className="divider" aria-hidden="true">
                 <div className="divider-diamond" />
